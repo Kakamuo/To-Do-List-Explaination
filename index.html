@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Task List Code Explanation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScript Task List Code Explained (Eng + UrduLish)</h1>
+    </header>
+
+    <section class="code-explanation">
+        <h2>Code Explanation (Code ki Wazahat)</h2>
+
+        <!-- Step 1: Document Ready Event -->
+        <div class="explanation">
+            <h3>1. Document Ready Event (Document ka load hona)</h3>
+            <p><strong>English:</strong> This code waits for the document to fully load before executing the JavaScript. The `DOMContentLoaded` event ensures that all HTML elements are ready to be used.</p>
+            <p><strong>UrduLish:</strong> Ye code is baat ko ensure karta hai ke script tabhi chale jab tak document puri tarah load nahi ho jata. `DOMContentLoaded` event is baat ka confirmation deta hai ke sare HTML elements ready hain use hone ke liye.</p>
+            <h4>Code:</h4>
+            <pre><code>document.addEventListener("DOMContentLoaded", () => { ... });</code></pre>
+        </div>
+
+        <!-- Step 2: Selecting Elements -->
+        <div class="explanation">
+            <h3>2. Selecting Elements (Elements ko select karna)</h3>
+            <p><strong>English:</strong> We are selecting the elements by their IDs, which allows us to interact with them later. These elements are the input field, the button to add tasks, and the list where tasks will appear.</p>
+            <p><strong>UrduLish:</strong> Hum elements ko unke IDs ke zariye select kar rahe hain taake baad mein hum unse interact kar sakein. Yeh elements hain task input field, task add karne wala button, aur task list jahan tasks dikhayi denge.</p>
+            <h4>Code:</h4>
+            <pre><code>const taskInput = document.getElementById("task-input");
+const taskAddBtn = document.getElementById("task-add");
+const taskList = document.getElementById("task-list");</code></pre>
+        </div>
+
+        <!-- Step 3: Adding Task Event -->
+        <div class="explanation">
+            <h3>3. Adding Task Event (Task add karne ka event)</h3>
+            <p><strong>English:</strong> We add a click event listener to the "Add Task" button. This makes sure that whenever the user clicks on it, the `addTask` function is triggered.</p>
+            <p><strong>UrduLish:</strong> Hum "Add Task" button par click ka event listener add karte hain. Is se yeh ensure hota hai ke jab user button par click kare, to `addTask` function run ho jaye.</p>
+            <h4>Code:</h4>
+            <pre><code>taskAddBtn.addEventListener("click", addTask);</code></pre>
+        </div>
+
+        <!-- Step 4: Adding Task Function -->
+        <div class="explanation">
+            <h3>4. Add Task Function (Task add karne ka function)</h3>
+            <p><strong>English:</strong> The `addTask` function is responsible for checking if the input field is empty. If it’s not, it creates a new task and appends it to the task list.</p>
+            <p><strong>UrduLish:</strong> `addTask` function ka kaam yeh hai ke yeh check kare agar input field khali nahi hai. Agar kuch likha hai, to yeh ek nayi task create karke task list mein add kar deta hai.</p>
+            <h4>Code:</h4>
+            <pre><code>function addTask() {
+  const taskText = taskInput.value.trim();
+
+  if (taskText !== "") {
+    const taskItem = document.createElement("li");
+    taskItem.textContent = taskText;
+
+    taskList.appendChild(taskItem);
+    taskInput.value = "";
+  } else {
+    alert("You must write something");
+  }
+}</code></pre>
+        </div>
+
+        <!-- Step 5: Mark Task as Completed -->
+        <div class="explanation">
+            <h3>5. Mark Task as Completed (Task ko complete mark karna)</h3>
+            <p><strong>English:</strong> When a task item is clicked, the class "completed" is toggled. This can change its style (like a strikethrough) to show it's done.</p>
+            <p><strong>Urdu-ish:</strong> Jab koi task item click hota hai, to us par "completed" class toggle ho jati hai. Is se task ka style change hota hai, jaise ke us par line lag jana, jo yeh dikhata hai ke task complete ho gaya hai.</p>
+            <h4>Code:</h4>
+            <pre><code>taskItem.addEventListener("click", () => {
+  taskItem.classList.toggle("completed");
+});</code></pre>
+        </div>
+
+        <!-- Step 6: Deleting Task on Right Click -->
+        <div class="explanation">
+            <h3>6. Deleting Task on Right Click (Right click se task delete karna)</h3>
+            <p><strong>English:</strong> When a task is right-clicked, it will be removed from the list. We use `contextmenu` event and call the `remove()` method to delete the task.</p>
+            <p><strong>Urdu-ish:</strong> Jab kisi task par right-click kiya jata hai, to woh list se remove ho jata hai. Hum `contextmenu` event use karte hain aur `remove()` method call karke task ko delete kar dete hain.</p>
+            <h4>Code:</h4>
+            <pre><code>taskItem.addEventListener("contextmenu", (e) => {
+  e.preventDefault();
+  taskItem.remove();
+});</code></pre>
+        </div>
+    </section>
+
+    <section class="code-example">
+        <h2>Complete JavaScript Code Example (JavaScript Code ki Puri Misal)</h2>
+        <pre><code>document.addEventListener("DOMContentLoaded", () => {
+  const taskInput = document.getElementById("task-input");
+  const taskAddBtn = document.getElementById("task-add");
+  const taskList = document.getElementById("task-list");
+
+  taskAddBtn.addEventListener("click", addTask);
+
+  function addTask() {
+    const taskText = taskInput.value.trim();
+
+    if (taskText !== "") {
+      const taskItem = document.createElement("li");
+      taskItem.textContent = taskText;
+
+      taskItem.addEventListener("click", () => {
+        taskItem.classList.toggle("completed");
+      });
+
+      taskItem.addEventListener("contextmenu", (e) => {
+        e.preventDefault();
+        taskItem.remove();
+      });
+
+      taskList.appendChild(taskItem);
+      taskInput.value = "";
+    } else {
+      alert("You must write something");
+    }
+  }
+});</code></pre>
+    </section>
+
+    <footer>
+        <p>Created with ❤️ to make coding easier to understand. < /p>
+    </footer>
+</body>
+</html>
